@@ -1,11 +1,12 @@
 <?php session_start(); ?>
-
+<?php require "database_main.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 	  <title>POS</title>
 	  	<!-- required css and js -->
-		<script type="text/javascript" src="js/jquery.shop.js"></script>    
+		<script type="text/javascript" src="js/jquery.js"></script>    
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 		<!-- CSS Bootstrap & Custom -->
 	    <link rel="stylesheet" href="css/bootstrap.min.css">
 		<!-- Main CSS -->
@@ -20,12 +21,13 @@
 	    <div class="navbar-header">
 	      <a class="navbar-brand" href="index.php">Subhtron</a>
 	    </div>
-	    <?php if($_SESSION["login_flag"] == true){ ?>
+	    <?php if($_SESSION["login_flag"] == true || (isset($_SESSION["login_flag"]) && !empty($_SESSION["login_flag"]))){ ?>
 	    <ul class="nav navbar-nav">
 	      <li class="active" id="sales_nav"><a href="sales.php">Sales</a></li>
 	      <li><a href="purchase.php" id="purchase_nav">Purchase</a></li>
 	      <li><a href="ledger.php" id="ledger_nav">Ledger</a></li>
 	      <li><a href="bank.php" id="bank_nav">Balance</a></li>
+	      <li><a href="stock.php" id="stock_nav">Stock</a></li>
 	    </ul>
 	    <?php }else{
 	    	$_SESSION["login_flag"] = false;

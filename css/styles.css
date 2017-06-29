@@ -3,9 +3,14 @@ table {
 }
 
 table, th, td {
+	    padding: 10px;
     border: 1px solid black;
 }
-tr:nth-child(even) {background-color: #f2f2f2}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2
+}
+
 th {
     background-color: crimson;
     color: white;
@@ -54,4 +59,98 @@ input.input_all {
     float: right;
     padding: 0px 20px 0px 20px;
     color: white;
+}
+.box{
+	margin: 0 80px 80px 80px;
+	border: 1px solid black;
+}
+hr {
+    border-top: 1px solid black !important;
+}
+
+table.borderless_table {
+	background-color: white;
+    padding: 0px;
+    /* border: 1px transparent; */
+    width: auto;
+    border-style: hidden;
+}
+tr.borderless_table {
+	background-color: white;
+    padding: 0px;
+    /* border: 1px transparent; */
+    /*width: 25%;*/
+    border-style: hidden;
+}
+td.borderless_table {
+	background-color: white;
+    padding: 0px;
+    /* border: 1px transparent; */
+    /*width: 25%;*/
+    border-style: hidden;
+}
+
+th.input_th {
+    color: black;
+}
+.big_box {
+	text-align: center;
+    background: firebrick;
+    color: white;
+    width: 189px;
+    /* font-size: x-large; */
+    display: -webkit-inline-box;
+    cursor: pointer;
+    /* padding: 10px; */
+}
+.big_box:hover {
+    background: black;
+    color: white;
+}
+
+.big_box p{
+	padding-left: 55px;
+}
+
+.small_box {
+	text-align: center;
+    background: cadetblue;
+    color: white;
+    width: 189px;
+    /* font-size: x-large; */
+    display: -webkit-inline-box;
+    cursor: pointer;
+    /* padding: 10px; */
+}
+.small_box:hover {
+    background: black;
+    color: white;
+}
+
+.small_box p{
+	padding-left: 55px;
+}
+
+th.letter:hover {
+	 background: black;
+    color: white;
+    cursor: pointer;
+}
+.big_boxed {
+	text-align: center;
+    background: firebrick;
+    color: white;
+    width: 189px;
+    /* font-size: x-large; */
+    display: -webkit-inline-box;
+    cursor: pointer;
+    /* padding: 10px; */
+}
+.big_boxed:hover {
+    background: black;
+    color: white;
+}
+
+.big_boxed p{
+	padding-left: 55px;
 }

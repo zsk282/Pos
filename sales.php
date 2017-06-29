@@ -13,7 +13,7 @@
 			</div>
 		</div>
 		<div class="col-md-4">
-			<button>Make Sale</button>
+			<button onclick="location.href='selectCustomerBilling.php';">Make Sale</button>
 		</div>
 	</div>
 	<br>
@@ -27,8 +27,6 @@
 					<th><h3>Price</h3></th>
 					<th><h3>Payment Mode</h3></th>
 					<th><h3>View</h3></th>
-					<th><h3>Edit</h3></th>
-					<th><h3>Delete</h3></th>
 				</tr>
 				<tr>
 					<td>SUBH0001</td>
@@ -37,49 +35,17 @@
 					<td>1000</td>
 					<td>Cash</td>
 					<td><button>View</button></td>
-					<td><button>Edit</button></td>
-					<td><button>Delete</button></td>
-				</tr>
-				<tr>
-					<td>SUBH0001</td>
-					<td>SINEWAVE FIRM</td>
-					<td>5-1-2017</td>
-					<td>1000</td>
-					<td>Cash</td>
-					<td><button>View</button></td>
-					<td><button>Edit</button></td>
-					<td><button>Delete</button></td>
-				</tr>
-				<tr>
-					<td>SUBH0001</td>
-					<td>SINEWAVE FIRM</td>
-					<td>5-1-2017</td>
-					<td>1000</td>
-					<td>Cash</td>
-					<td><button>View</button></td>
-					<td><button>Edit</button></td>
-					<td><button>Delete</button></td>
-				</tr>
-				<tr>
-					<td>SUBH0001</td>
-					<td>SINEWAVE FIRM</td>
-					<td>5-1-2017</td>
-					<td>1000</td>
-					<td>Cash</td>
-					<td><button>View</button></td>
-					<td><button>Edit</button></td>
-					<td><button>Delete</button></td>
 				</tr>
 			</table>
 		</div>
 	</div>
-	<div class="row">
+	<!-- <div class="row">
 		<div class="col-md-8"></div>
 		<div class="col-md-4">
 			<div class="order_total_box">
 				<h2>Total:&nbsp</h2><h2>12345</h2>
 			</div>
 		</div>
-	</div>
+	</div> -->
 <?php } ?>
 <?php include "footer.php"; ?>

@@ -33,61 +33,46 @@
 		<div class="col-md-12">
 			<table>
 				<tr>
-					<th><h3>DealerId</h3></th>
+					<th><h3>Tin No./GST/CST Number</h3></th>
 					<th><h3>Firm/Customer Name</h3></th>
-					<th><h3>Last Deal BillNo</h3></th>
-					<th><h3>Date</h3></th>
 					<th><h3>Debit</h3></th>
 					<th><h3>Credit</h3></th>
-					<th><h3>View</h3></th>
-					<th><h3>Edit</h3></th>
-					<th><h3>Delete</h3></th>
+					<th><h3>Balance</h3></th>
+					<th><h3>Details</h3></th>
 				</tr>
 				<tr>
 					<td>SUBH0001</td>
 					<td>SINEWAVE FIRM</td>
-					<td>JSGI5641</td>
-					<td>27-01-2017</td>
 					<td>+5000</td>
 					<td>0</td>
-					<td><button>View</button></td>
-					<td><button>Edit</button></td>
-					<td><button>Delete</button></td>
-				</tr>
-				<tr>
-					<td>SUBH0001</td>
-					<td>SINEWAVE FIRM</td>
-					<td>JSGI5641</td>
-					<td>27-01-2017</td>
 					<td>+5000</td>
-					<td>0</td>
-					<td><button>View</button></td>
-					<td><button>Edit</button></td>
-					<td><button>Delete</button></td>
-				</tr>
-				<tr>
-					<td>SUBH0001</td>
-					<td>SINEWAVE FIRM</td>
-					<td>JSGI5641</td>
-					<td>27-01-2017</td>
-					<td>+5000</td>
-					<td>0</td>
-					<td><button>View</button></td>
-					<td><button>Edit</button></td>
-					<td><button>Delete</button></td>
-				</tr>
-				<tr>
-					<td>SUBH0001</td>
-					<td>SINEWAVE FIRM</td>
-					<td>JSGI5641</td>
-					<td>27-01-2017</td>
-					<td>+5000</td>
-					<td>0</td>
-					<td><button>View</button></td>
-					<td><button>Edit</button></td>
-					<td><button>Delete</button></td>
+					<td><button onclick="location.href='ledgerDetail.php';">Detail</button></td>
 				</tr>
 				
+				<tr>
+					<td>SUBH0001</td>
+					<td>SINEWAVE FIRM</td>
+					<td>+5000</td>
+					<td>0</td>
+					<td>+5000</td>
+					<td><button onclick="location.href='ledgerDetail.php';">Detail</button></td>
+				</tr>
+				<tr>
+					<td>SUBH0001</td>
+					<td>SINEWAVE FIRM</td>
+					<td>+5000</td>
+					<td>0</td>
+					<td>+5000</td>
+					<td><button onclick="location.href='ledgerDetail.php';">Detail</button></td>
+				</tr>
+				<tr>
+					<td>SUBH0001</td>
+					<td>SINEWAVE FIRM</td>
+					<td>+5000</td>
+					<td>0</td>
+					<td>+5000</td>
+					<td><button onclick="location.href='ledgerDetail.php';">Detail</button></td>
+				</tr>
 			</table>
 		</div>
 	</div>
