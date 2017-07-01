@@ -27,8 +27,7 @@ if ($result->num_rows > 0) {
             <th><h5>Pick</h5></th>
             <th><h5>Serial Number</h5></th>
             <th><h5>Company</h5></th>
-            <th><h5>Item Name</h5></th>  
-            <th><h5>Amount</h5></th>  
+            <th><h5>Item Name</h5></th>
           </tr>";
     if ($result->num_rows > 0) {
       while($row = $result->fetch_assoc()) {
@@ -40,13 +39,11 @@ if ($result->num_rows > 0) {
         echo $row["company_name"];
         echo "</td><td>";
         echo $row["item_name"];
-        echo "</td><td>";
-        echo "<input type='textfield' name='amount'>";
         echo "</td></tr>";
         // $temp_name = $row["item_name"];
       }
     }
-    echo "<tr><td></td><td></td><td></td><td></td><td><button id='test' onclick='test()'>TEST</button>";
+    echo "<tr><td></td><td></td><td></td><td><button id='test' onclick='test()'>Select Product</button>";
     echo "</tbody></table>";
 
 } else {

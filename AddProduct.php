@@ -42,8 +42,9 @@
 	</div>
 	<div class="row" id="add_products_step">
 		<h4 style="text-align: center;">Add products in Bill</h4>
+		<form action="submitBillAddition.php" method="get">
 			<div class="col-md-12">
-				<table style="">	
+				<table id="myTable">	
 					<tr>
 						<th><h5>S.No.</h5></th>
 						<th><h5>Marks & NOS Container Number</h5></th>
@@ -52,30 +53,14 @@
 						<th><h5>Rate</h5></th>
 						<th><h5>Amount</h5></th>
 					</tr>
-					<tr>
-						<td>1</td>
-						<td>Luminous</td>
-						<td>Luminous Battery</td>
-						<td>1 Nos</td>
-						<td>Nos</td>
-						<td>8000</td>
-					</tr>
-						<td>1</td>
-						<td>Luminous</td>
-						<td>Luminous Battery</td>
-						<td>1 Nos</td>
-						<td>Nos</td>
-						<td>8000</td>
-					</tr>
-						<td>1</td>
-						<td>Luminous</td>
-						<td>Luminous Battery</td>
-						<td>1 Nos</td>
-						<td>Nos</td>
-						<td>8000</td>
-					</tr>
 				</table>
+				<div class="row">
+					<tr>
+						<button>Reset</button>
+						<input type="submit" name="Make Bill">
+				</div>
 			</div>
+		</form>
 		</div>
 </div>
 <script type="text/javascript">
@@ -130,9 +115,25 @@ function test() {
             // If you need to iterate the TD's
         });
         //get row values
-        alert(this.id);
+        //alert(this.id);
+        var rowCount = $('#myTable tr').length;
+		// alert(rowCount);
+        $.ajax({
+	        type: "get",
+	        url: "addProductsInBill.php",
+	        data: {
+	        	'item_id':this.id
+	        },
+	        success: function(responseData) {
+		    	var res = JSON.parse(responseData);
+		    	$('#myTable').append("'<tr><td>"+rowCount+"</td><td>"+res['serial_number']+"</td><td>"+res['item_name']+"</td><td>1 Nos</td><td><input type='textfield' name='amount'></td><td></td></tr>'");
+		    },
+		    error: function(errorThrown) {
+		        alert("Error: Cannot find Models");
+		    }
+	    })
     });
-}
+}	
 
 </script>
 <?php require "footer.php";  ?>
