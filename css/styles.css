@@ -154,3 +154,6 @@ th.letter:hover {
 .big_boxed p{
 	padding-left: 55px;
 }
+input.input_th_input {
+    max-width: 148px;
+}

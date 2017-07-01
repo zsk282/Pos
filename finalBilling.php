@@ -86,7 +86,7 @@
 				</table>
 			</td>
 		</tr>
-		<table style="">
+		<!-- <table style="">
 			<tr>
 			<th class="input_th"><input type="textfield" name="container_no" placeholder="Model"></th>
 			<th class="input_th"><input type="textfield" name="container_no" placeholder="Item"></th>
@@ -96,7 +96,7 @@
 			<th class="input_th"><input type="textfield" name="container_no" placeholder="Amount"></th>
 			<th class="input_th"><button>Add Product</button></th>
 			</tr>
-		</table>
+		</table> -->
 		<tr>
 			<!-- main particulars table -->
 			<table>
