@@ -47,8 +47,8 @@
 		<br>
 			<!-- <form action="addProductAction.php" method="GET"> -->
 				Company Name: <input type="textfield" id="company_name"><br>
-				Model Name: <input type="textfield" id="model_name"><br>
 				item name: <input type="textfield" id="item_name"><br>
+				Model Number: <input type="textfield" id="model_name"><br>
 				<!-- <input type="submit" name="submit"> -->
 				<button id="addProductActionSubmit">Add Product</button>
 				<script type="text/javascript">

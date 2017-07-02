@@ -7,7 +7,7 @@ $model_name = $_GET["model_name"];
 $item_name = $_GET["item_name"];
 
 
-$sql = "INSERT INTO products_list (company_name, model_name, item_name) VALUES ( '".$company_name."','".$model_name."','".$item_name."')";
+$sql = "INSERT INTO products_list (company_name, model_name, item_name) VALUES ( '".$company_name."','".$company_name." ".$model_name."','".$item_name."')";
 
 if ($conn->query($sql) === TRUE) {
     echo "success";

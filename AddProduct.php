@@ -1,4 +1,12 @@
 <?php require "header.php"; ?>
+<?php 
+
+$bill_id = $_GET['bill_id'];
+$mode_billing_payment = $_GET['mode_billing_payment'];
+
+?>
+<input type="hidden" id="bill_id" value="<?php echo $bill_id; ?>">
+<input type="hidden" id="billing_mode" value="<?php echo $mode_billing_payment; ?>">
 <div class="container">
 <div class="row">
 		<div class="col-md-12">
@@ -42,7 +50,6 @@
 	</div>
 	<div class="row" id="add_products_step">
 		<h4 style="text-align: center;">Add products in Bill</h4>
-		<form action="submitBillAddition.php" method="get">
 			<div class="col-md-12">
 				<table id="myTable">	
 					<tr>
@@ -56,11 +63,12 @@
 				</table>
 				<div class="row">
 					<tr>
-						<button>Reset</button>
-						<input type="submit" name="Make Bill">
+						<button id="reset_btn">Reset</button>
+						<button id="make_bill">Make Bill</button>
+						
 				</div>
 			</div>
-		</form>
+		<!-- </form> -->
 		</div>
 </div>
 <script type="text/javascript">
@@ -104,7 +112,8 @@ function modelclick(a){
 	    }
     })
 }
-
+var productsArray = [];
+var productsAmount = [];
 function test() {
 	// alert("sads");
     $('#out').text('');
@@ -115,7 +124,7 @@ function test() {
             // If you need to iterate the TD's
         });
         //get row values
-        //alert(this.id);
+        // alert(this.id);
         var rowCount = $('#myTable tr').length;
 		// alert(rowCount);
         $.ajax({
@@ -126,7 +135,12 @@ function test() {
 	        },
 	        success: function(responseData) {
 		    	var res = JSON.parse(responseData);
-		    	$('#myTable').append("'<tr><td>"+rowCount+"</td><td>"+res['serial_number']+"</td><td>"+res['item_name']+"</td><td>1 Nos</td><td><input type='textfield' name='amount'></td><td></td></tr>'");
+		    	productsArray.push({
+		    		'serial_number':res['serial_number'],
+		    		'item_name':res['item_name']
+		    	});
+		    	$('#myTable').append("'<tr><td>"+rowCount+"</td><td>"+res['serial_number']+"</td><td>"+res['item_name']+"</td><td>1 Nos</td><td><input type='textfield' id='amount"+rowCount+"'></td><td></td></tr>'");
+		    	// console.log(productsArray);
 		    },
 		    error: function(errorThrown) {
 		        alert("Error: Cannot find Models");
@@ -135,5 +149,40 @@ function test() {
     });
 }	
 
+$("#reset_btn").click(function(){
+    alert("The paragraph was clicked.");
+});
+
+$("#make_bill").click(function(){
+    var rowCount = $('#myTable tr').length;
+    alert(rowCount);
+    for(var i =1; i<rowCount;i++){
+    	var temp = $("#amount"+i).val();
+    	productsAmount.push(temp);
+    }
+    // console.log(productsAmount);
+    finalAjax();
+});
+
+function finalAjax(){
+	var bill_id = $("#bill_id").val();
+	var mode_billing_payment = $("#billing_mode").val();
+	$.ajax({
+        type: "get",
+        url: "submitBillAddition.php",
+        data: {
+        	'mode_billing_payment': mode_billing_payment,
+        	'bill_id':bill_id,
+        	'productsArray':productsArray,
+        	'productsAmount':productsAmount
+        },
+        success: function(responseData) {
+	    	alert("Bill  created");
+	    },
+	    error: function(errorThrown) {
+	        alert("Error: Cannot Creating Bill");
+	    }
+    })
+}
 </script>
 <?php require "footer.php";  ?>

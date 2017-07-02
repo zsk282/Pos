@@ -1,4 +1,5 @@
 <?php require "header.php"; ?>
+<?php $bill_number = $_GET["bill_number"];?>
 <div class="container">
 <h5 style="text-align: center;font-weight: 600">VAT INVOICE</h5>
 <div class="row" style="text-align: right;">
@@ -22,12 +23,34 @@
 					</tr>
 					<tr>
 						<td>
-							<h4>SHUBHTRON</h4>
+						<?php
+							$temp;
+								$sql = "SELECT customer_id FROM temp_bill_counter WHERE bill_no='".$bill_number."'";
+								$result = $conn->query($sql);
+								if ($result->num_rows > 0) {
+								    // output data of each row
+								    while($row = $result->fetch_assoc()) {
+								       $temp = $row["customer_id"];
+								    }
+								}
+
+								$sql = "SELECT * FROM cutomer WHERE id='".$temp."'";
+								$result = $conn->query($sql);
+								if ($result->num_rows > 0) {
+								    // output data of each row
+								    while($row = $result->fetch_assoc()) {
+								       $c_name = $row["name"];
+								       $c_tin_no = $row["tin_no"];
+								       $c_address = $row["address"];
+								       $c_mobile_no = $row["mobile_no"];
+								    }
+								}
+							?>
+							<h4><?php echo $c_name; ?></h4>
 							<p>
-								P-71 Karni Nagar Vivek Vihar<br>
-								200ft Bypass Gandhi Path West<br>
-								Vaishali Nagar-JAIPUR<br>
-								9950093592
+								<?php echo $c_address; ?><br>
+								<?php echo $c_mobile_no; ?><br>
+								Tin Number: <?php echo $c_tin_no; ?>
 							</p>
 						</td>
 					</tr>
@@ -37,10 +60,21 @@
 				<table>
 					<tr>
 						<td>
-							Invoice No
+							Invoice No : <?php echo $bill_number;?>
 						</td>
 						<td>
-							Dated
+							<?php
+							$temp;
+								$sql = "SELECT billing_date FROM temp_bill_counter WHERE bill_no='".$bill_number."'";
+								$result = $conn->query($sql);
+								if ($result->num_rows > 0) {
+								    // output data of each row
+								    while($row = $result->fetch_assoc()) {
+								       $temp = $row["billing_date"];
+								    }
+								}
+							?>
+							Dated: <?php echo $temp;?>
 						</td>
 					</tr>
 					<tr>
@@ -48,7 +82,18 @@
 							Delivery Note
 						</td>
 						<td>
-							Mode/Terms of Payments
+						<?php
+							$temp;
+								$sql = "SELECT mode_selling FROM temp_bill_counter WHERE bill_no='".$bill_number."'";
+								$result = $conn->query($sql);
+								if ($result->num_rows > 0) {
+								    // output data of each row
+								    while($row = $result->fetch_assoc()) {
+								       $temp = $row["mode_selling"];
+								    }
+								}
+							?>
+							Mode/Terms of Payments: <?php echo $temp;?>
 						</td>
 					</tr>
 					<tr>
@@ -108,38 +153,30 @@
 					<th><h5>Rate</h5></th>
 					<th><h5>Amount</h5></th>
 				</tr>
-				<tr>
-					<td>1</td>
-					<td>Luminous</td>
-					<td>Luminous Battery</td>
-					<td>1 Nos</td>
-					<td>Nos</td>
-					<td>8000</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>Luminous</td>
-					<td>Luminous Battery</td>
-					<td>1 Nos</td>
-					<td>Nos</td>
-					<td>8000</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>Luminous</td>
-					<td>Luminous Battery</td>
-					<td>1 Nos</td>
-					<td>Nos</td>
-					<td>8000</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>Luminous</td>
-					<td>Luminous Battery</td>
-					<td>1 Nos</td>
-					<td>Nos</td>
-					<td>8000</td>
-				</tr>
+				<?php
+					$sql = "SELECT * FROM products WHERE selling_bill_number='".$bill_number."'";
+					$result = $conn->query($sql);
+					if ($result->num_rows > 0) {
+					    // output data of each row
+					    while($row = $result->fetch_assoc()) {
+					    	//echo $row["serial_number"];die;
+					       	echo "<tr><td>";
+					       	echo "1";
+							echo "</td><td>";
+							echo $row["serial_number"];
+							echo "</td><td>";
+							echo $row["model_name"];
+							echo "</td><td>";
+							echo "1 Nos";
+							echo "</td><td>";
+							echo $row["selling_rate"] *1;
+							echo "</td><td>";
+							echo $row["selling_rate"] *1;
+							echo "</td></tr>";
+					    }
+					}
+
+				?>
 				<tr>
 					<td></td>
 					<td></td>

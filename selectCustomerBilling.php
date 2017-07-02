@@ -1,7 +1,7 @@
 <?php require "header.php"; ?>
 <!-- SELECTED STEP ONE -->
 <div class="container">
-<form action="AddProduct.php" method="POST">
+<form action="AddProduct.php" method="GE"T>
 		<div class="row" id="select_customer_step">
 			<h4 style="text-align: center;">Select Customer</h4>
 			<div class="col-md-12">
@@ -42,8 +42,6 @@
 							} else {
 							    echo "0 results";
 							}
-
-
 						?>
 					</table>
 			</div>
@@ -54,31 +52,37 @@
 				<ul class="search_box_ul">
 					<li class="search_box_li">
 						Mode of Payment
-						<select name="payment_method">
+						<select name="mode_billing_payment">
 							<option value="Cash">Cash</option>
 							<option value="Check">Check</option>
 							<option value="Credit">Credit</option>
 							<option value="Online">Online</option>
 						</select>
 					</li>
-
-					<!-- <li class="search_box_li">
-						Customer TIN# <input type="textfield" class="input_mode_payment">
-					</li> -->
-					<!-- <li class="search_box_li">
-						Customer Address <input type="textfield" class="input_mode_payment">
-					</li> -->
-					<button>Add in Bill</button>
 				</ul>
+				<div class="col-md-12 two_big_button" style="text-align: right;">
+					<?php
+						$sql = "SELECT MAX(id) FROM temp_bill_counter";
+						$result = $conn->query($sql);
+						$temp = 0;
+						// print_r($result);die;
+						$result = $conn->query($sql);
+						if ($result->num_rows > 0) {
+						    $data = array();
+						    foreach ($result->fetch_assoc() as $key ) {
+						    	$temp = $key;
+						    }
+						}
+					?>
+					<input type="hidden" name="bill_id" value="<?php echo $temp; ?>">
+					<input type="submit" value="Add Products"></input>
+				</div>
 		</div>
-		<div class="row" id="final_confirmation_step">
+		<!-- <div class="row" id="final_confirmation_step">
 		<h4 style="text-align: center;">Final Action</h4>
 			<div class="row">
-				<div class="col-md-6 two_big_button" style="text-align: center;">
-				<input type="submit" name="Make Bill">
-				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 	<script type="text/javascript">
 		function select_customer_step(session_key,session_value){

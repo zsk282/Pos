@@ -4,7 +4,7 @@ require "database_main.php";
 $letter = $_GET["letter"];
 
 
-$sql = "select item_id, item_name FROM products_list where item_name LIKE '".$letter."'";
+$sql = "select item_id, model_name FROM products_list where model_name LIKE '".$letter."'";
 // print_r($sql);die;
 $result = $conn->query($sql);
 
@@ -17,7 +17,7 @@ if ($result->num_rows > 0) {
     <?php
     while($row = $result->fetch_assoc()) {
        echo "<div class='big_box' onclick=modelclick('".$row['item_id']."')>"; 
-       echo "<p>".$row["item_name"]."</p>";
+       echo "<p>".$row["model_name"]."</p>";
        echo "</div>";
     }
 } else {
