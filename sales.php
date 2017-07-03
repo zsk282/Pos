@@ -28,24 +28,36 @@
 					<th><h3>Payment Mode</h3></th>
 					<th><h3>View</h3></th>
 				</tr>
-				<tr>
-					<td>SUBH0001</td>
-					<td>SINEWAVE FIRM</td>
-					<td>5-1-2017</td>
-					<td>1000</td>
-					<td>Cash</td>
-					<td><button>View</button></td>
-				</tr>
+				<?php
+				$sql = "SELECT selling_bill_number,selling_rate,customer_id,mode_selling FROM products WHERE is_sold = 1";
+				// print_r($sql);die;
+				$result = $conn->query($sql);
+
+				if ($result->num_rows > 0) {
+				    // output data of each row
+				    while($row = $result->fetch_assoc()) {
+				       	echo "<tr>";
+				        echo "<td>" . $row["selling_bill_number"]. "</td>";
+				        echo "<td>" . $row["customer_id"]. "</td>";
+				        echo "<td></td>";
+				        echo "<td>" . $row["selling_rate"]. "</td>";
+				        echo "<td>" . $row["mode_selling"]. "</td>";
+				        echo "<td><button onclick=viewBill('".$row["selling_bill_number"]."')>View Bill</button></td>";
+				        echo "</tr>";
+				    }
+				} else {
+				    echo "0 results";
+				}
+
+				?>
 			</table>
 		</div>
 	</div>
-	<!-- <div class="row">
-		<div class="col-md-8"></div>
-		<div class="col-md-4">
-			<div class="order_total_box">
-				<h2>Total:&nbsp</h2><h2>12345</h2>
-			</div>
-		</div>
-	</div> -->
+<script type="text/javascript">
+	function viewBill(a){
+		fullPath ="finalbilling.php?bill_number="+a;
+	    	window.location=fullPath;
+	}
+</script>
 <?php } ?>
 <?php include "footer.php"; ?>

@@ -8,11 +8,14 @@
 		<script type="text/javascript" src="js/jquery.js"></script>    
 		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 		<!-- CSS Bootstrap & Custom -->
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	    <link rel="stylesheet" href="css/bootstrap.min.css">
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="css/styles.css">
 		<!-- Favicons -->
-	    <link rel="shortcut icon" href="images/ico/favicon.ico">
+	    <!-- <link rel="shortcut icon" href="images/ico/favicon.ico"> -->
 	</head>
 	<body>
 
@@ -40,9 +43,9 @@
 	    <?php } ?>
 	    <ul class="nav navbar-nav navbar-right">
 	    <?php if($_SESSION["login_flag"] == false){ ?>
-	      <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+	      <li><a href="login.php"><span class="login_span"></span> Login</a></li>
 	     <?php }else{ ?>
-	     	<li><a href="logoutAction.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+	     	<li><a href="logoutAction.php"><span class="logout"></span> Logout</a></li>
 	     <?php } ?>
 	    </ul>
 	  </div>

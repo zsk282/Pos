@@ -16,7 +16,7 @@ if ($result->num_rows > 0) {
        $temp_name = $row["model_name"];
     }
 
-    $sql = "select company_name,model_name,item_name,serial_number FROM products where model_name ='".$temp_name."'";
+    $sql = "select company_name,model_name,item_name,serial_number FROM products where model_name ='".$temp_name."'  AND is_sold != 1";
     $data = array();
     // die($sql);
     $result = $conn->query($sql);

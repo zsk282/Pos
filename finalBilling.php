@@ -157,11 +157,13 @@
 					$sql = "SELECT * FROM products WHERE selling_bill_number='".$bill_number."'";
 					$result = $conn->query($sql);
 					if ($result->num_rows > 0) {
-					    // output data of each row
+					    /*print_r($result->num_rows);die;*/
+					    $temp = 1;
+					    $total_amount = 0;
 					    while($row = $result->fetch_assoc()) {
 					    	//echo $row["serial_number"];die;
 					       	echo "<tr><td>";
-					       	echo "1";
+					       	echo $temp;
 							echo "</td><td>";
 							echo $row["serial_number"];
 							echo "</td><td>";
@@ -173,6 +175,8 @@
 							echo "</td><td>";
 							echo $row["selling_rate"] *1;
 							echo "</td></tr>";
+							$temp++;
+							$total_amount += $row["selling_rate"];
 					    }
 					}
 
@@ -180,10 +184,10 @@
 				<tr>
 					<td></td>
 					<td></td>
-					<td></td>
 					<td style="font-weight: 600">Total</td>
-					<td style="font-weight: 600">4 Nos</td>
-					<td style="font-weight: 600">18000</td>
+					<td style="font-weight: 600"><?php echo $result->num_rows; ?></td>
+					<td></td>
+					<td style="font-weight: 600"><?php echo $total_amount;?></td>
 				</tr>
 			</table>
 			<table>

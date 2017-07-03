@@ -1,18 +1,68 @@
 <?php require "header.php"; ?>
 <!-- SELECTED STEP ONE -->
 <div class="container">
-<form action="AddProduct.php" method="GE"T>
+<div class="col-md-12">
+	<table>
+		<tr>
+			<td>Customer Name</td>
+			<td><input type="textfield" id="c_name"></td>
+		</tr>
+		<tr>
+			<td>Customer Tin#</td>
+			<td><input type="textfield" id="c_tin"></td>
+		</tr>
+		<tr>
+			<td>Customer Address</td>
+			<td><input type="textfield" id="c_Address"></td>
+		</tr>
+		<tr>
+			<td>Customer Mobile</td>
+			<td><input type="textfield" id="c_mobile"></td>
+		</tr>
+		<tr>
+			<td><button id="acc_customer_btn1">Add Customer</button></td>
+			<td><button id="acc_customer_btn2">Add And Create Bill</button></td>
+		</tr>
+	</table>
+</div>
+<script type="text/javascript">
+	$("#acc_customer_btn1").click(function(){
+		alert("The paragraph was clicked.");
+	});
+
+	$("#acc_customer_btn2").click(function(){
+		var c_name = $("#c_name").val();
+		var c_tin = $("#c_tin").val();
+		var c_Address = $("#c_Address").val();
+		var c_mobile = $("#c_mobile").val();
+		$.ajax({
+		            type: "get",
+		            url: "AddCustomer.php",
+		            data: {
+		            	'c_name':c_name,
+		            	'c_tin':c_tin,
+		            	'c_Address':c_Address,
+		            	'c_mobile':c_mobile
+		            },
+		            success: function(responseData) {
+		            	if(responseData == "error"){
+		            		alert("Error Adding new Customer");
+		            	}else{
+							fullPath ="AddProduct.php?customer_details="+responseData+"&mode_billing_payment=Cash&bill_id="+$("#bill_id").val();
+							window.location=fullPath;
+		            	}
+		            },
+		            error: function(errorThrown) {
+		                alert("Error Adding new Customer");
+		            }
+		        })
+	});
+</script>
+<form action="AddProduct.php" method="GET">
 		<div class="row" id="select_customer_step">
-			<h4 style="text-align: center;">Select Customer</h4>
+			<h4 style="text-align: center;">Select Customer for Billing</h4>
 			<div class="col-md-12">
 					<table>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td><button onclick="select_customer_step_add_customer()">Add New Customer</button></td>
-						</tr>
 						<tr>
 							<th><h3>Firm/Customer Name</h3></th>
 							<th><h3>TIN Number</h3></th>
@@ -72,9 +122,13 @@
 						    foreach ($result->fetch_assoc() as $key ) {
 						    	$temp = $key;
 						    }
+						    if(!isset($temp)){
+						    	$temp = 1;
+						    }
 						}
+						echo "<input type='hidden' name='bill_id' id='bill_id' value=".$temp.">";
 					?>
-					<input type="hidden" name="bill_id" value="<?php echo $temp; ?>">
+					<!-- <input type="hidden" name="bill_id" id="bill_id" value="<?php echo $temp; ?>"> -->
 					<input type="submit" value="Add Products"></input>
 				</div>
 		</div>

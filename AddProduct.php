@@ -3,10 +3,12 @@
 
 $bill_id = $_GET['bill_id'];
 $mode_billing_payment = $_GET['mode_billing_payment'];
+$customer_details = $_GET["customer_details"];
 
 ?>
 <input type="hidden" id="bill_id" value="<?php echo $bill_id; ?>">
 <input type="hidden" id="billing_mode" value="<?php echo $mode_billing_payment; ?>">
+<input type="hidden" id="customer_details" value="<?php echo $customer_details; ?>">
 <div class="container">
 <div class="row">
 		<div class="col-md-12">
@@ -50,6 +52,12 @@ $mode_billing_payment = $_GET['mode_billing_payment'];
 	</div>
 	<div class="row" id="add_products_step">
 		<h4 style="text-align: center;">Add products in Bill</h4>
+		<p>Date: <input type="text" id="datepicker"></p>
+		<script>
+		  $( function() {
+		   $('#datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
+		  } );
+		  </script>
 			<div class="col-md-12">
 				<table id="myTable">	
 					<tr>
@@ -155,7 +163,7 @@ $("#reset_btn").click(function(){
 
 $("#make_bill").click(function(){
     var rowCount = $('#myTable tr').length;
-    alert(rowCount);
+    // alert(rowCount);
     for(var i =1; i<rowCount;i++){
     	var temp = $("#amount"+i).val();
     	productsAmount.push(temp);
@@ -166,18 +174,25 @@ $("#make_bill").click(function(){
 
 function finalAjax(){
 	var bill_id = $("#bill_id").val();
+	var customer_details = $("#customer_details").val();
 	var mode_billing_payment = $("#billing_mode").val();
+	var bill_date = $("#datepicker").val();
+	// alert(bill_date);
 	$.ajax({
         type: "get",
         url: "submitBillAddition.php",
         data: {
+        	'bill_date':bill_date,
         	'mode_billing_payment': mode_billing_payment,
         	'bill_id':bill_id,
+        	'customer_details':customer_details,
         	'productsArray':productsArray,
         	'productsAmount':productsAmount
         },
         success: function(responseData) {
-	    	alert("Bill  created");
+	    	// alert(responseData);
+	    	fullPath ="finalbilling.php?bill_number="+responseData;
+	    	window.location=fullPath;
 	    },
 	    error: function(errorThrown) {
 	        alert("Error: Cannot Creating Bill");
